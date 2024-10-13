@@ -8,6 +8,7 @@
     "express": "^4.21.1",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
+    "mongoose-paginate-v2": "^1.8.5",
     "swagger-ui-express": "^5.0.1"
   }
 }
