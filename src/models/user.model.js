@@ -1,19 +1,39 @@
-import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate-v2';
+import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 
-const userSchema=new mongoose.Schema(
-    {
-        email:{
-            type:String,
-            require:true,
-        },
-        password{
-            type:String,
-            require:true,
-        }
-    }
-);
+const userSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    require: true,
+  },
+  password: {
+    type: String,
+    require: true,
+  },
+  phone: {
+    type: String,
+  },
+  adress: {
+    type: String,
+  },
+  fullname: {
+    type: String,
+  },
+  role: {
+    type: String,
+    default: "customer",
+    enum: ["customer", "admin", "staff"],
+  },
+  status: {
+    type: String,
+    default: "active",
+    enum: ["active", "inactive"],
+  },
+  avatar: {
+    type: String,
+  },
+});
 
 userSchema.plugin(mongoosePaginate);
 
-const User = mongoose.model
+const User = mongoose.model;
