@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
- 'mongoose';
 
 dotenv.config();
 
