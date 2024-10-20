@@ -2,7 +2,7 @@
 
 
 
-## Mô hình hoạt động của Express
+# Mô hình hoạt động của Express
 
 <div id="header" align="center">
   <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/>
@@ -10,7 +10,7 @@
 
 Khởi tạo ứng dụng express --> Routing --> Middleware --> Request Handlers --> Phản hồi lại client --> Listening for Requests
 
-### Chi tiết
+## Chi tiết
 
 Mô hình hoạt động của Express (Express.js) trong Node.js có thể hiểu như sau:
 
