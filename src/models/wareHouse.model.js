@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import mongoosePaginate, { paginate } from "mongoose-paginate-v2";
 
-
 const warehouseSchema = new mongoose.Schema(
   {
     nameWarehouse: {
@@ -13,14 +12,21 @@ const warehouseSchema = new mongoose.Schema(
       required: true,
     },
     id_branch: {
-      type: mongoose.Schema.Branch.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Branch",
     },
     Flowers: [
-        {
-            id_typeFlower:{
-                type: mongoose.Schema.typeFlower.ObjectId,
-            }
-        }
+      {
+        id_typeFlower: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "typeFlower",
+          required: true,
+        },
+        quantity: {
+          type: Number,
+          default: 1,
+        },
+      },
     ],
     is_deleted: {
       type: Boolean,
@@ -35,6 +41,6 @@ const warehouseSchema = new mongoose.Schema(
 
 warehouseSchema.plugin(mongoosePaginate);
 
-const Warehouse =  mongoose.model('Warehouse',warehouseSchema);
+const Warehouse = mongoose.model("Warehouse", warehouseSchema);
 
 export default Warehouse;

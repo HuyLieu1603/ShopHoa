@@ -11,6 +11,10 @@ const productSchema = new mongoose.Schema(
       type: Number,
       require: true,
     },
+    id_category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
     desc: {
       type: String,
     },
@@ -37,8 +41,8 @@ const productSchema = new mongoose.Schema(
       },
     ],
     is_deleted: {
-        type: Boolean,
-        default: false,
+      type: Boolean,
+      default: false,
     },
     status: {
       type: String,
@@ -54,7 +58,5 @@ const productSchema = new mongoose.Schema(
 
 productSchema.plugin(mongoosePaginate);
 
-const Product = mongoose.model('Product',productSchema);
+const Product = mongoose.model("Product", productSchema);
 export default Product;
-
-
