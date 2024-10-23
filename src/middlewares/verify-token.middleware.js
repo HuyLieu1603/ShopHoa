@@ -16,5 +16,18 @@ export const verifyToken = async (req, res, next) => {
   const token = bearerToken.split(" ")[1];
 
   //verif token
-  //   const verifyToken= await
+  const verifyToken = await handleVerifyToken({
+    token,
+    secreckey: checkTypeToken(query?.type),
+  });
+  if (!verifyToken) {
+    return res.status(HTTP_STATUS.UNAUTHORIZED).json({
+      message: "Invalid token!",
+      success: false,
+    });
+  }
+
+  req.user = verifyToken;
+
+  next();
 };

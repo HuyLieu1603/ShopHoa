@@ -14,3 +14,7 @@ export const handleGenerateToken = async ({
 };
 
 //verity token
+export const handleVerityToken = async ({token, secretkey=process.env.SECRET_KEY})=>{
+  const decoded = jwt.verify(token,secretkey);
+  return decoded;
+};
