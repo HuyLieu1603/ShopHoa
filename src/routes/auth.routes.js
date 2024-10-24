@@ -3,7 +3,7 @@ import {
   registerController,
   resetPasswordController,
   sendEmailController,
-} from "../controller/auth.controller";
+} from "../controllers/auth.controller.js";
 import {
   validationLogin,
   validationRegister,
