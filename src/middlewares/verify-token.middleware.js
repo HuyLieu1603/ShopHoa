@@ -1,6 +1,6 @@
 import { HTTP_STATUS } from "../common/http-status.common.js";
-import { checkTypeToken } from "../utils/handlers.util.js";
-import { handleVerifyToken } from "../utils/jwt.util.js";
+import { checkTypeToken } from "../utils/handler.ulti.js";
+import { handleVerityToken } from "../utils/jwt.util.js";
 
 export const verifyToken = async (req, res, next) => {
   const bearerToken = req.headers["authorization"];
@@ -16,7 +16,7 @@ export const verifyToken = async (req, res, next) => {
   const token = bearerToken.split(" ")[1];
 
   //verif token
-  const verifyToken = await handleVerifyToken({
+  const verifyToken = await handleVerityToken({
     token,
     secreckey: checkTypeToken(query?.type),
   });

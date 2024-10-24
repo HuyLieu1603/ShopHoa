@@ -9,17 +9,16 @@ import {
   validationRegister,
   validationResetPassword,
   validationSendEmail,
-} from "../middlewares/auth.middleware";
+} from "../middlewares/auth.middleware.js";
 import express from "express";
-import { verifyToken } from "../middlewares/verify-token.middleware";
+import { verifyToken } from "../middlewares/verify-token.middleware.js";
 import { wrapRequestHandler } from "../utils/handler.ulti.js";
-import { verify } from "jsonwebtoken";
 
 const router = express.Router();
 
 //REGISTER
 router.post(
-  "/resgister",
+  "/register",
   wrapRequestHandler(validationRegister),
   wrapRequestHandler(registerController),
 );

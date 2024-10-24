@@ -3,14 +3,13 @@ import {
   checkEmailExist,
   createUser,
   updatePassword,
-} from "../server/auth.service.js";
+} from "../services/auth.service.js";
 import {
   handleComparePassword,
   handleHashPassword,
 } from "../utils/hash-password.util.js";
 import { HTTP_STATUS } from "../common/http-status.common.js";
 import { handleGenerateToken } from "../utils/jwt.util.js";
-import { checkEmailExist } from "../services/auth.service.js";
 
 dotenv.config();
 

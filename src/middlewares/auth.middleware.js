@@ -31,7 +31,7 @@ export const validationLogin = async (req, res, next) => {
   //validate
   const { error } = loginValidation.validate(body, { abortEarly: false });
   if (error) {
-    const erros = error.details.map((item) => item.message);
+    const errors = error.details.map((item) => item.message);
     return res.status(HTTP_STATUS.BAD_REQUEST).json({
       message: errors,
       success: false,
