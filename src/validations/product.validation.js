@@ -50,4 +50,6 @@ export const productValidation = joi.object({
       }),
     }),
   ),
+  is_deleted: joi.boolean(),
+  status: joi.string().valid("active", "inactive").default("active"),
 });
