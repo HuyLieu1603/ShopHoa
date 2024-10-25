@@ -31,7 +31,8 @@ const productSchema = new mongoose.Schema(
     Flowers: [
       {
         id: {
-          type: String,
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "typeFlower",
           required: true,
         },
         quantity: {
