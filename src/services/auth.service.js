@@ -1,4 +1,4 @@
-import User from "../models/user.model.js";
+import User from '../models/user.model.js';
 
 // Check email is already exist
 export const checkEmailExist = async (email) => {

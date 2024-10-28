@@ -1,0 +1,49 @@
+import Product from '../models/product.model.js';
+import typeFlower from '../models/typeFlower.model.js';
+
+export const productService = {
+  //add product
+  addProduct: async (body) => {
+    return await Product.create(body);
+  },
+  //get product by ID
+  getProductById: async (id) => {
+    return await Product.findById(id).populate;
+  },
+  //get all product
+  getProduct: async (option, query) => {
+    return await Product.paginate(option, query);
+  },
+  //update status
+  updateStatus: async (id, status) => {
+    return await Product.findByIdAndUpdate(
+      { _id: id },
+      { status },
+      { new: true },
+    );
+  },
+  //update is deleted
+  updateIsDeleted: async (id, isDel) => {
+    return await Product.findByIdAndUpdate(
+      { _id: id },
+      { is_deleted: isDel },
+      { new: true },
+    );
+  },
+  //update product
+  updateProduct: async (id, body) => {
+    return await Product.findByIdAndUpdate({ _id: id }, body, { new: true });
+  },
+  //delete product
+  deleteProduct: async (id) => {
+    return await Product.findByIdAndDelete(id);
+  },
+  //update quantity product when order
+  updateQuantity: async (id, FlowersId, quantity) => {
+    return await Product.findOneAndUpdate(
+      { _id: id, 'Flowers.id': FlowersId },
+      { $set: { 'Flowers.$.quantity': quantity } },
+      { new: true },
+    );
+  },
+};
