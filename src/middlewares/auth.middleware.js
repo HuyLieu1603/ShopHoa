@@ -3,9 +3,9 @@ import {
   registerValidation,
   resetPasswordValidation,
   sendEmailValidation,
-} from "../validations/auth.validation.js";
+} from '../validations/auth.validation.js';
 
-import { HTTP_STATUS } from "../common/http-status.common.js";
+import { HTTP_STATUS } from '../common/http-status.common.js';
 
 // REGISTER MIDDLE-WARE
 export const validationRegister = async (req, res, next) => {

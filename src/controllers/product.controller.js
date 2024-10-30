@@ -4,59 +4,59 @@ import { productService } from '../services/product.service.js';
 import Product from '../models/product.model.js';
 
 export const productController = {
-  optionProduct: (params) => {
-    const { _limit = 10, _page = 1, q, populate, rest } = params;
+  // optionProduct: (params) => {
+  //   const { _limit = 10, _page = 1, q, populate, rest } = params;
 
-    let populateDefault = [
-      {
-        path: 'category',
-        select: '_id nameCategory image desc',
-      },
-      {
-        path: 'brand',
-        select: '_id nameBrand image desc',
-      },
-    ];
-    if (populate) {
-      if (Array.isArray(populate)) {
-        populateDefault = [...populateDefault, ...populate];
-      } else {
-        populateDefault.push(populate);
-      }
-    }
-    let query = {};
-    if (q) {
-      query = {
-        $and: [
-          {
-            $or: [{ nameProduct: { $regex: new RegExp(q), $options: 'i' } }],
-          },
-        ],
-      };
-    }
-    // filter status
-    if (rest.status) {
-      query = {
-        ...query,
-        status: rest.status,
-      };
-    }
-    // filter deleted
-    if (rest.deleted) {
-      query = {
-        ...query,
-        is_deleted: rest.deleted === 'true' ? true : false,
-      };
-    }
+  //   let populateDefault = [
+  //     {
+  //       path: 'category',
+  //       select: '_id nameCategory image desc',
+  //     },
+  //     {
+  //       path: 'brand',
+  //       select: '_id nameBrand image desc',
+  //     },
+  //   ];
+  //   if (populate) {
+  //     if (Array.isArray(populate)) {
+  //       populateDefault = [...populateDefault, ...populate];
+  //     } else {
+  //       populateDefault.push(populate);
+  //     }
+  //   }
+  //   let query = {};
+  //   if (q) {
+  //     query = {
+  //       $and: [
+  //         {
+  //           $or: [{ nameProduct: { $regex: new RegExp(q), $options: 'i' } }],
+  //         },
+  //       ],
+  //     };
+  //   }
+  //   // filter status
+  //   if (rest.status) {
+  //     query = {
+  //       ...query,
+  //       status: rest.status,
+  //     };
+  //   }
+  //   // filter deleted
+  //   if (rest.deleted) {
+  //     query = {
+  //       ...query,
+  //       is_deleted: rest.deleted === 'true' ? true : false,
+  //     };
+  //   }
 
-    const option = {
-      limit: parseInt(_limit),
-      page: parseInt(_page),
-      populate: populateDefault,
-      sort: { createdAt: -1 },
-    };
-    return { option, query };
-  },
+  //   const option = {
+  //     limit: parseInt(_limit),
+  //     page: parseInt(_page),
+  //     populate: populateDefault,
+  //     sort: { createdAt: -1 },
+  //   };
+  //   return { option, query };
+  // },
 
   //Check id product invalid
   checkIdProductInvalid: async (req, res) => {
@@ -175,6 +175,64 @@ export const productController = {
       message: 'Update status successfully!',
       success: true,
       data: product,
+    });
+  },
+  updateProduct: async (req, res) => {
+    const { productId } = req.params;
+    const body = req.body;
+    //Kiểm tra sản phẩm có tồn tại
+    const productExist = await productController.checkProductExist(req, res);
+    //
+    const product = await productService.updateProduct(productId, body);
+    if (!product)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Update product failed!',
+        success: false,
+      });
+    return res.status(HTTP_STATUS.BAD_REQUEST).json({
+      message: 'Update product successfully!',
+      success: true,
+      data: product,
+    });
+  },
+  //Xóa mềm nhiều sản phẩm
+  updateIsDelManyProduct: async (req, res) => {
+    const { id: ids, deleted } = req.query;
+    if (!ids || !ids.length) {
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Ids invalid',
+        success: false,
+      });
+    }
+    const idsArray = Array.isArray(ids) ? ids : [ids];
+    //check id product invalid
+    const checkIds = idsArray.map((id) => {
+      return mongoose.Types.ObjectId.isValid(id);
+    });
+    //include
+    if (checkIds.includes(false)) {
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Ids invalid',
+        success: false,
+      });
+    }
+    const result = await Product.updateMany(
+      { _id: { $in: idsArray } },
+      { is_deleted: deleted || true },
+      { new: true },
+    );
+    if (!result) {
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Update many product failed!',
+        success: false,
+      });
+    }
+    return res.status(HTTP_STATUS.OK).json({
+      message: deleted
+        ? 'Restore product success!'
+        : 'Update many successfully',
+      success: true,
+      status: HTTP_STATUS.OK,
     });
   },
 };

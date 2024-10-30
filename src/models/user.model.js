@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
+import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const userSchema = new mongoose.Schema(
   {
@@ -13,25 +13,25 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      default: "",
+      default: '',
     },
     address: {
       type: String,
-      default: "",
+      default: '',
     },
     fullname: {
       type: String,
-      default: "",
+      default: '',
     },
     role: {
       type: String,
-      default: "customer",
-      enum: ["customer", "admin", "staff"],
+      default: 'customer',
+      enum: ['customer', 'admin', 'staff'],
     },
     status: {
       type: String,
-      default: "active",
-      enum: ["active", "inactive"],
+      default: 'active',
+      enum: ['active', 'inactive'],
     },
     avatar: {
       type: String,
@@ -45,6 +45,6 @@ const userSchema = new mongoose.Schema(
 
 userSchema.plugin(mongoosePaginate);
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;

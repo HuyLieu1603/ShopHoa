@@ -8,8 +8,13 @@ export const checkEmailExist = async (email) => {
 
 // Create User
 export const createUser = async (data) => {
-  const user = await User.create({ data });
-  return user;
+  try {
+    const user = await User.create(data);
+    return user;
+  } catch (error) {
+    console.error('Error creating user:', error);
+    return null;
+  }
 };
 
 // Update Password
