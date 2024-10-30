@@ -124,4 +124,57 @@ export const productController = {
       data: product,
     });
   },
+  //Delete product by Id
+  deleteProductById: async (req, res) => {
+    const { productId } = req.params;
+
+    await productController.checkIdProductInvalid(req, res);
+
+    const product = await productService.deleteProductById(productId);
+    if (!product)
+      return res
+        .status(HTTP_STATUS.BAD_REQUEST)
+        .json({ message: 'Delete product failed', success: false });
+    return res
+      .status(HTTP_STATUS.OK)
+      .json({ message: 'delete product successfully!' });
+  },
+  //update status product
+  updateStatus: async (req, res) => {
+    const { productId } = req.params;
+    const { is_deleted, status } = req.query;
+
+    if (!is_deleted || !status) {
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Update is_deleted and status failed',
+        success: false,
+      });
+    }
+    const deleted = is_deleted === 'true' ? true : false;
+    const statusProduct = status === 'active' ? 'active' : 'inactive';
+
+    if (is_deleted) {
+      const product = await productService.updateIsDeleted(productId, deleted);
+      if (!product)
+        return res
+          .status(HTTP_STATUS.BAD_REQUEST)
+          .json({ message: 'update is_deleted failed', success: false });
+      return res.status(HTTP_STATUS.OK).json({
+        message: 'Update is_deleted successfully!',
+        success: true,
+        data: product,
+      });
+    }
+    const product = await productService.updateStatus(productId, statusProduct);
+    if (!product)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Update status failed!',
+        success: false,
+      });
+    return res.status(HTTP_STATUS.OK).json({
+      message: 'Update status successfully!',
+      success: true,
+      data: product,
+    });
+  },
 };
