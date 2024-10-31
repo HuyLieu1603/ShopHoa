@@ -53,6 +53,8 @@ export const validationSendEmail = async (req, res, next) => {
       success: false,
     });
   }
+  req.email = body;
+  next();
 };
 //RESET PASSWORD MIDDLE-WARE
 export const validationResetPassword = async (req, res, next) => {

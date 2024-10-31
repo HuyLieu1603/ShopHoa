@@ -61,10 +61,10 @@ export const loginController = async (req, res) => {
       success: false,
     });
   //Compare password
-  const isMatch = await handleComparePassword(
-    { password: body.password },
-    { hashPassword: user.password },
-  );
+  const isMatch = await handleComparePassword({
+    password: body.password,
+    hashPassword: user.password,
+  });
   if (!isMatch)
     return res.status(HTTP_STATUS.BAD_REQUEST).json({
       message: 'Password not match!',
@@ -74,7 +74,7 @@ export const loginController = async (req, res) => {
   const accessToken = await handleGenerateToken({
     payload: { _id: user._id, email: user.email, role: user.role },
   });
-  return res.status(HTTP_STATUS.BAD_REQUEST).json({
+  return res.status(HTTP_STATUS.OK).json({
     message: 'Login successfully!',
     success: true,
     accessToken,
@@ -103,6 +103,10 @@ export const sendEmailController = async (req, res) => {
       link,
     });
   }
+  return res.status(HTTP_STATUS.BAD_REQUEST).json({
+    message: 'Send email failed!',
+    success: false,
+  });
 };
 //RESET PASSWORD
 export const resetPasswordController = async (req, res) => {

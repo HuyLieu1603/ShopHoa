@@ -45,6 +45,6 @@ const userSchema = new mongoose.Schema(
 
 userSchema.plugin(mongoosePaginate);
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema, 'User');
 
 export default User;
