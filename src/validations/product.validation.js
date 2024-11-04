@@ -16,7 +16,7 @@ export const productValidation = joi.object({
     .required()
     .custom((value, helpers) => {
       if (!mongoose.Types.ObjectId.isValid(value)) {
-        return helpers.message('ID danh mục không hợp lệ');
+        return helpers.message('Id danh mục không hợp lệ');
       }
       return value;
     })

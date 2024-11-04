@@ -46,4 +46,11 @@ export const productService = {
       { new: true },
     );
   },
+
+  updateCateId: async (idCate) => {
+    return await Product.updateMany(
+      { id_category: idCate },
+      { $set: { id_category: '' } },
+    );
+  },
 };
