@@ -19,7 +19,11 @@ export const categoryService = {
     return await Category.find();
   },
   //update category by Id
-  updateCateById: async (cateId) => {
-    return await Category.findByIdAndUpdate(cateId);
+  updateCateById: async (cateId, data) => {
+    return await Category.findByIdAndUpdate(
+      cateId,
+      { $set: data },
+      { new: true },
+    );
   },
 };

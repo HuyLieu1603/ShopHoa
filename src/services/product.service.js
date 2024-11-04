@@ -10,6 +10,10 @@ export const productService = {
   getProductById: async (id) => {
     return await Product.findById(id).populate;
   },
+  //get product by id cate
+  getProductByCateId: async (cateId) => {
+    return await Product.findById({ id_category: cateId });
+  },
   //get all product
   getProduct: async (option, query) => {
     return await Product.paginate(option, query);
@@ -46,7 +50,7 @@ export const productService = {
       { new: true },
     );
   },
-
+  //Update id category after delete category
   updateCateId: async (idCate) => {
     return await Product.updateMany(
       { id_category: idCate },

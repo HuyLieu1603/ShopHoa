@@ -28,13 +28,13 @@ export const categoryController = {
     return res.status(HTTP_STATUS.OK).json({
       message: 'Create category successfully!',
       success: true,
-      qqqqqqqqqqqqq,
     });
   },
   //Update category by id
   updateCateById: async (req, res) => {
     const { cateId } = req.params;
-    const newCate = await categoryService.updateCateById(cateId);
+    const body = req.body;
+    const newCate = await categoryService.updateCateById(cateId, body);
     if (!newCate)
       return res.status(HTTP_STATUS.BAD_REQUEST).json({
         message: 'Update category failed!',
@@ -48,6 +48,7 @@ export const categoryController = {
   //delete category by id
   deleteCateById: async (req, res) => {
     const { cateId } = req.params;
+    const isExist = await productService.getProductByCateId(cateId);
     const delCatePromise = categoryService.deleteCategory(cateId);
     const setCateIdInProductPromise = productService.updateCateId(cateId);
     const [delCate, setCateIdInProduct] = await Promise.all([
@@ -76,6 +77,7 @@ export const categoryController = {
     return res.status(HTTP_STATUS.OK).json({
       message: 'fetch list category successfully!',
       success: true,
+      data: result,
     });
   },
 };

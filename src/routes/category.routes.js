@@ -22,7 +22,7 @@ router.get(
 );
 // update category by id
 router.put(
-  '/category/:productId',
+  '/category/:cateId',
   wrapRequestHandler(verifyToken),
   wrapRequestHandler(checkPermission),
   wrapRequestHandler(categoryMiddleware),

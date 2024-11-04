@@ -17,7 +17,8 @@ const categorySchema = new mongoose.Schema(
     versionKey: false,
   },
 );
-categorySchema.plugin('Category');
-const Category = mongoose.model('Category', categorySchema);
+categorySchema.plugin(mongoosePaginate);
+
+const Category = mongoose.model('Category', categorySchema, 'Category');
 
 export default Category;
