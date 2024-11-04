@@ -35,3 +35,5 @@ router.delete(
   wrapRequestHandler(checkPermission),
   wrapRequestHandler(categoryController.deleteCateById),
 );
+
+export default router;

@@ -1,13 +1,12 @@
 import express from 'express';
 import authRoutes from './auth.routes.js';
+import categoryRoutes from './category.routes.js';
 
-const router= express.Router();
+const router = express.Router();
 
-const rootRoutes= [
-    authRoutes,
-];
+const rootRoutes = [authRoutes, categoryRoutes];
 rootRoutes.map((route) => {
-    router.use(route);
-  });
-  
-  export default router;
+  router.use(route);
+});
+
+export default router;
