@@ -9,6 +9,7 @@ const router = express.Router();
 router.post(
   '/product',
   wrapRequestHandler(verifyToken),
+  wrapRequestHandler(checkPermission),
   wrapRequestHandler(productMiddleware),
   wrapRequestHandler(productController.addProduct),
 );

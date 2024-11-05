@@ -67,9 +67,58 @@ export const typeFlowerController = {
       success: true,
     });
   },
+  //update type flower
+  updateTypeFlowerById: async (req, res) => {
+    const { typeFlowerId } = req.params;
+    const body = req.body;
+    const result = await typeFlowerService.updateTypeFlowerById(
+      typeFlowerId,
+      body,
+    );
+    if (!result)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Update type flower failed!',
+        success: false,
+      });
+    return res.status(HTTP_STATUS.OK).json({
+      message: 'Update type flower successfully!',
+      success: true,
+    });
+  },
   //update status
   updateStatusTypeFlower: async (req, res) => {
     const { typeFlowerId } = req.params;
     const { status } = req.status;
+    const updateStatus = await typeFlowerService.updateStatus(
+      typeFlowerId,
+      status,
+    );
+    if (!updateStatus)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Update status failed',
+        success: false,
+      });
+    return res.status(HTTP_STATUS.OK).json({
+      message: 'Update status successfully!',
+      success: true,
+    });
+  },
+  //update is deleted ?
+  updateIsDeletedTypeFlower: async (req, res) => {
+    const { typeFlowerId } = req.params;
+    const { is_deleted } = req.is_deleted;
+    const result = await typeFlowerService.updateIsDeleted(
+      typeFlowerId,
+      is_deleted,
+    );
+    if (!result)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Update failed!',
+        success: false,
+      });
+    return res.status(HTTP_STATUS.OK).json({
+      message: 'Update successfully!',
+      success: true,
+    });
   },
 };
