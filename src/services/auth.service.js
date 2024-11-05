@@ -19,7 +19,7 @@ export const createUser = async (data) => {
 
 // Update Password
 export const updatePassword = async (userID, password) => {
-  const user = User.findByIdAndUpdate(
+  const user = await User.findByIdAndUpdate(
     { _id: userID },
     { password },
     { new: true },

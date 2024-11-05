@@ -110,8 +110,8 @@ export const sendEmailController = async (req, res) => {
 };
 //RESET PASSWORD
 export const resetPasswordController = async (req, res) => {
-  const { newPassword } = req.newPassword;
-  const { email } = req.email;
+  const { newPassword } = req.body;
+  const { email } = req.user;
   //Check
   const user = await checkEmailExist(email);
   if (!user)
@@ -131,5 +131,6 @@ export const resetPasswordController = async (req, res) => {
   return res.status(HTTP_STATUS.BAD_REQUEST).json({
     message: 'Update password success!',
     success: true,
+    
   });
 };

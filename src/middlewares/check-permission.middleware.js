@@ -11,8 +11,6 @@ export const checkPermission = (req, res, next) => {
       req.permission = TypeRole.STAFF;
       break;
     case TypeRole.USER:
-      req.permission = TypeRole.USER;
-      break;
     default:
       return res.status(403).json({
         message: 'Permission denied!',

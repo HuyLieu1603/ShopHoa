@@ -48,10 +48,14 @@ export const resetPasswordValidation = joi.object({
     'any.required': 'Mật khẩu không được để trống',
     'string.empty': 'Mật khẩu không được để trống',
   }),
-  confirmPassword: joi.string().required().valid(joi.ref('password')).messages({
-    'any.only': 'Mật khẩu không khớp',
-    'any.required': 'Mật khẩu không được để trống',
-  }),
+  confirmPassword: joi
+    .string()
+    .required()
+    .valid(joi.ref('newPassword'))
+    .messages({
+      'any.only': 'Mật khẩu không khớp',
+      'any.required': 'Mật khẩu không được để trống',
+    }),
 });
 
 // CHANGE PASSWORD
