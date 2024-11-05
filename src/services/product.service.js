@@ -12,7 +12,7 @@ export const productService = {
   },
   //get product by id cate
   getProductByCateId: async (cateId) => {
-    return await Product.findById({ id_category: cateId });
+    return await Product.findOne({ id_category: cateId });
   },
   //get all product
   getProduct: async (option, query) => {

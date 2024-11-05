@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
-const typeflowerSchema = new mongoose.Schema({
+const typeflowerSchema = new mongoose.Schema(
+  {
     typeName: {
       type: String,
       required: true,
@@ -20,8 +21,9 @@ const typeflowerSchema = new mongoose.Schema({
       },
     ],
     status: {
-      type: Boolean,
-      default: false,
+      type: String,
+      enum: ['active', 'inactive'],
+      default: 'active',
     },
     is_deleted: {
       type: Boolean,
@@ -29,12 +31,12 @@ const typeflowerSchema = new mongoose.Schema({
     },
   },
   {
-    timestamps:true,
-    versionKey:false,
-  }
+    timestamps: true,
+    versionKey: false,
+  },
 );
 
 typeflowerSchema.plugin(mongoosePaginate);
 
-const typeFlower = mongoose.model('typeFlower',typeflowerSchema);
+const typeFlower = mongoose.model('typeFlower', typeflowerSchema, 'typeFlower');
 export default typeFlower;

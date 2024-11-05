@@ -49,15 +49,23 @@ export const categoryController = {
   deleteCateById: async (req, res) => {
     const { cateId } = req.params;
     const isExist = await productService.getProductByCateId(cateId);
-    const delCatePromise = categoryService.deleteCategory(cateId);
-    const setCateIdInProductPromise = productService.updateCateId(cateId);
-    const [delCate, setCateIdInProduct] = await Promise.all([
-      delCatePromise,
-      setCateIdInProductPromise,
-    ]);
-    if (!delCate || !setCateIdInProduct)
+    if (isExist) {
+      const delCatePromise = categoryService.deleteCategory(cateId);
+      const setCateIdInProductPromise = productService.updateCateId(cateId);
+      const [delCate, setCateIdInProduct] = await Promise.all([
+        delCatePromise,
+        setCateIdInProductPromise,
+      ]);
+      if (!delCate || !setCateIdInProduct)
+        return res.status(HTTP_STATUS.BAD_REQUEST).json({
+          message: 'Delete category failed',
+          success: false,
+        });
+    }
+    const deleteCategory = await categoryService.deleteCategory(cateId);
+    if (!deleteCategory)
       return res.status(HTTP_STATUS.BAD_REQUEST).json({
-        message: 'Delete category failed',
+        message: 'Delete category failed!',
         success: false,
       });
     return res.status(HTTP_STATUS.OK).json({

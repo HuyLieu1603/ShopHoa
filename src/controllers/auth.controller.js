@@ -110,7 +110,7 @@ export const sendEmailController = async (req, res) => {
 };
 //RESET PASSWORD
 export const resetPasswordController = async (req, res) => {
-  const { newPassword } = req.forgotPassword;
+  const { newPassword } = req.newPassword;
   const { email } = req.email;
   //Check
   const user = await checkEmailExist(email);
