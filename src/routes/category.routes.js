@@ -15,6 +15,11 @@ router.post(
   wrapRequestHandler(categoryMiddleware),
   wrapRequestHandler(categoryController.addCate),
 );
+//get category by id
+router.get(
+  '/category/:cateId',
+  wrapRequestHandler(categoryController.getDetailCategory),
+);
 // fetch list category
 router.get(
   '/categorys',

@@ -1,5 +1,5 @@
-import { productValidation } from "../validations/product.validation";
-import { HTTP_STATUS } from "../common/http-status.common";
+import { productValidation } from '../validations/product.validation.js';
+import { HTTP_STATUS } from '../common/http-status.common.js';
 
 // PRODUCT MIDDLEWARE
 export const productMiddleware = async (req, res, next) => {

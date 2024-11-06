@@ -8,7 +8,7 @@ export const productService = {
   },
   //get product by ID
   getProductById: async (id) => {
-    return await Product.findById(id).populate;
+    return await Product.findById(id);
   },
   //get product by id cate
   getProductByCateId: async (cateId) => {
@@ -17,6 +17,9 @@ export const productService = {
   //get all product
   getProduct: async (option, query) => {
     return await Product.paginate(option, query);
+  },
+  fetchListProduct: async () => {
+    return await Product.find();
   },
   //update status
   updateStatus: async (id, status) => {

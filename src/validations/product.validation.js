@@ -27,7 +27,7 @@ export const productValidation = joi.object({
   desc: joi.string().max(500).messages({
     'string.max': 'Mô tả sản phẩm không được vượt quá 500 ký tự',
   }),
-  Image: joi.array().items(
+  Images: joi.array().items(
     joi.object({
       url: joi.string().uri().required(),
       public_id: joi.string().required(),
@@ -50,6 +50,6 @@ export const productValidation = joi.object({
       }),
     }),
   ),
-  is_deleted: joi.boolean(),
+  is_deleted: joi.boolean().default(false),
   status: joi.string().valid('active', 'inactive').default('active'),
 });

@@ -87,17 +87,22 @@ export const productController = {
         message: 'Add product failed',
         success: false,
       });
+    return res.status(HTTP_STATUS.OK).json({
+      message: 'Create a new product successfully!',
+      success: true,
+      data: newProduct,
+    });
   },
   //Get all product
   getAllProduct: async (req, res) => {
-    const { _limit = 10, _page = 1, q, ...rest } = req.query;
-    const { option, query } = productController.optionProduct({
-      _limit,
-      _page,
-      q,
-      rest,
-    });
-    const lstProduct = await productService.getAllProduct(option, query);
+    // const { _limit = 10, _page = 1, q, ...rest } = req.query;
+    // const { option, query } = productController.optionProduct({
+    //   _limit,
+    //   _page,
+    //   q,
+    //   rest,
+    // });
+    const lstProduct = await productService.fetchListProduct();
     if (!lstProduct)
       return res.status(HTTP_STATUS.BAD_REQUEST).json({
         message: 'Get all product failed!',
@@ -106,14 +111,14 @@ export const productController = {
     return res.status(HTTP_STATUS.OK).json({
       message: 'Get all product successfully!',
       success: true,
-      ...lstProduct,
+      lstProduct,
     });
   },
   //Get product by Id
   getProductById: async (req, res) => {
-    const { productId } = req.params;
-    const product = await productService.getProductById(productId);
-    if (!product)
+    const { id } = req.params;
+    const result = await productService.getProductById(id);
+    if (!result)
       return res.status(HTTP_STATUS.BAD_REQUEST).json({
         message: 'Get product by Id failed',
         success: false,
@@ -121,7 +126,7 @@ export const productController = {
     return res.status(HTTP_STATUS.OK).json({
       message: 'Get Product By Id Successfully!',
       success: true,
-      data: product,
+      data: result,
     });
   },
   //Delete product by Id

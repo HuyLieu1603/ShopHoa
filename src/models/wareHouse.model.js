@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import mongoosePaginate, { paginate } from "mongoose-paginate-v2";
+import mongoose from 'mongoose';
+import mongoosePaginate, { paginate } from 'mongoose-paginate-v2';
 
 const warehouseSchema = new mongoose.Schema(
   {
@@ -13,13 +13,13 @@ const warehouseSchema = new mongoose.Schema(
     },
     id_branch: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Branch",
+      ref: 'Branch',
     },
     Flowers: [
       {
         id_typeFlower: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "typeFlower",
+          ref: 'typeFlower',
           required: true,
         },
         quantity: {
@@ -41,6 +41,6 @@ const warehouseSchema = new mongoose.Schema(
 
 warehouseSchema.plugin(mongoosePaginate);
 
-const Warehouse = mongoose.model("Warehouse", warehouseSchema);
+const Warehouse = mongoose.model('Warehouse', warehouseSchema, 'Warehouse');
 
 export default Warehouse;

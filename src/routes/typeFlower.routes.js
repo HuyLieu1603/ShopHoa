@@ -21,7 +21,7 @@ router.get(
 );
 //get detail type flower
 router.get(
-  'type-flower',
+  'type-flower/:typeFlowerId',
   wrapRequestHandler(typeFlowerController.getTypeFlowerById),
 );
 //update type flower

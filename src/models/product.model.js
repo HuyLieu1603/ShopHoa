@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
+import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const productSchema = new mongoose.Schema(
   {
@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema(
     },
     id_category: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+      ref: 'Category',
     },
     desc: {
       type: String,
@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema(
       {
         id: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "typeFlower",
+          ref: 'typeFlower',
           required: true,
         },
         quantity: {
@@ -47,8 +47,8 @@ const productSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["active", "inactive"],
-      default: "active",
+      enum: ['active', 'inactive'],
+      default: 'active',
     },
   },
   {
@@ -59,5 +59,5 @@ const productSchema = new mongoose.Schema(
 
 productSchema.plugin(mongoosePaginate);
 
-const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model('Product', productSchema, 'Product');
 export default Product;

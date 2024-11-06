@@ -73,6 +73,21 @@ export const categoryController = {
       success: true,
     });
   },
+  //get detail category
+  getDetailCategory: async (req, res) => {
+    const { cateId } = req.params;
+    const detailCategory = await categoryService.fetchCateById(cateId);
+    if (!detailCategory)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Get category failed!',
+        success: false,
+      });
+    return res.status(HTTP_STATUS.OK).json({
+      message: 'Get category successfully!',
+      success: true,
+      data: detailCategory,
+    });
+  },
   //fetch list category
   fetchListCategory: async (req, res) => {
     const { query } = req.query;

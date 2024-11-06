@@ -85,40 +85,47 @@ export const typeFlowerController = {
       success: true,
     });
   },
-  //update status
-  updateStatusTypeFlower: async (req, res) => {
-    const { typeFlowerId } = req.params;
-    const { status } = req.status;
-    const updateStatus = await typeFlowerService.updateStatus(
-      typeFlowerId,
-      status,
-    );
-    if (!updateStatus)
-      return res.status(HTTP_STATUS.BAD_REQUEST).json({
-        message: 'Update status failed',
-        success: false,
-      });
-    return res.status(HTTP_STATUS.OK).json({
-      message: 'Update status successfully!',
-      success: true,
-    });
-  },
-  //update is deleted ?
+  //update status and is deleted
   updateIsDeletedTypeFlower: async (req, res) => {
     const { typeFlowerId } = req.params;
-    const { is_deleted } = req.is_deleted;
-    const result = await typeFlowerService.updateIsDeleted(
-      typeFlowerId,
-      is_deleted,
-    );
-    if (!result)
+    const { is_deleted, status } = req.query;
+    if (!is_deleted || !status) {
       return res.status(HTTP_STATUS.BAD_REQUEST).json({
-        message: 'Update failed!',
+        message: 'Update is_deleted and status failed',
         success: false,
       });
-    return res.status(HTTP_STATUS.OK).json({
-      message: 'Update successfully!',
-      success: true,
-    });
+    }
+    const deleted = is_deleted === 'true' ? true : false;
+    const statusTypeFlower = status === 'active' ? 'active' : 'inactive';
+    if (deleted) {
+      const result = await typeFlowerService.updateIsDeleted(
+        typeFlowerId,
+        is_deleted,
+      );
+      if (!result)
+        return res.status(HTTP_STATUS.BAD_REQUEST).json({
+          message: 'Update failed!',
+          success: false,
+        });
+      return res.status(HTTP_STATUS.OK).json({
+        message: deleted ? 'Restore successfully!' : 'Update successfully!',
+        success: true,
+      });
+    }
+    if (statusTypeFlower) {
+      const updateStatus = await typeFlowerService.updateStatus(
+        typeFlowerId,
+        status,
+      );
+      if (!updateStatus)
+        return res.status(HTTP_STATUS.BAD_REQUEST).json({
+          message: 'Update status failed',
+          success: false,
+        });
+      return res.status(HTTP_STATUS.OK).json({
+        message: 'Update status successfully!',
+        success: true,
+      });
+    }
   },
 };

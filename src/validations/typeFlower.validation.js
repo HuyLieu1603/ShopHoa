@@ -1,8 +1,8 @@
 import joi from 'joi';
-import typeFlower from '../models/typeFlower.model';
+import typeFlower from '../models/typeFlower.model.js';
 
 export const typeFlowerValidation = joi.object({
-  typeName: joi.string().required().message({
+  typeName: joi.string().required().messages({
     'any.required': 'Tên loại hoa không được để trống',
     'string.empty': 'Tên loại hoa không được để trống',
   }),
@@ -11,7 +11,7 @@ export const typeFlowerValidation = joi.object({
     'number.base': 'Giá tiền phải là một con số',
     'number.min': 'Giá tiền phải là một số lớn hơn 0',
   }),
-  Image: joi.array().items(
+  images: joi.array().items(
     joi.object({
       url: joi.string().uri().required(),
       public_id: joi.string().required(),

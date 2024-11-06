@@ -1,6 +1,6 @@
 import express from 'express';
 import { verifyToken } from '../middlewares/verify-token.middleware.js';
-import { productController } from '../controllers/product.controller';
+import { productController } from '../controllers/product.controller.js';
 import { productMiddleware } from '../middlewares/product.middleware.js';
 import { wrapRequestHandler } from '../utils/handler.ulti.js';
 import { checkPermission } from '../middlewares/check-permission.middleware.js';
@@ -16,7 +16,10 @@ router.post(
 //router to get all products
 router.get('/products', wrapRequestHandler(productController.getAllProduct));
 //router to get product by id
-router.get('/product:id', wrapRequestHandler(productController.getProductById));
+router.get(
+  '/product/:id',
+  wrapRequestHandler(productController.getProductById),
+);
 //router update status
 router.patch(
   '/products/:productId',
