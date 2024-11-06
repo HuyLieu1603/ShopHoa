@@ -1,7 +1,6 @@
 import { HTTP_STATUS } from '../common/http-status.common.js';
 import { typeFlowerService } from '../services/typeFlower.service.js';
-import mongoose from 'mongoose';
-import typeFlower from '../models/typeFlower.model.js';
+
 
 export const typeFlowerController = {
   //add type flower
