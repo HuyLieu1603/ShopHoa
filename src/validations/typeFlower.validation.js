@@ -1,5 +1,4 @@
 import joi from 'joi';
-import typeFlower from '../models/typeFlower.model.js';
 
 export const typeFlowerValidation = joi.object({
   typeName: joi.string().required().messages({

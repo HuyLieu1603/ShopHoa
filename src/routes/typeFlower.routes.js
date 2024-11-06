@@ -16,7 +16,7 @@ router.post(
 );
 //fetch list type flower
 router.get(
-  'type-flowers',
+  '/type-flowers',
   wrapRequestHandler(typeFlowerController.fetchListTypeFlower),
 );
 //get detail type flower
