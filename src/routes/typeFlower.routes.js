@@ -21,12 +21,12 @@ router.get(
 );
 //get detail type flower
 router.get(
-  'type-flower/:typeFlowerId',
+  '/type-flower/:typeFlowerId',
   wrapRequestHandler(typeFlowerController.getTypeFlowerById),
 );
 //update type flower
 router.put(
-  'type-flower/:typeFlowerId',
+  '/type-flower/:typeFlowerId',
   wrapRequestHandler(verifyToken),
   wrapRequestHandler(checkPermission),
   wrapRequestHandler(typeFlowerMiddleware),
@@ -37,14 +37,20 @@ router.patch(
   '/type-flowers/:typeFlowerId',
   wrapRequestHandler(verifyToken),
   wrapRequestHandler(checkPermission),
-  wrapRequestHandler(typeFlowerController.updateStatusTypeFlower),
+  wrapRequestHandler(typeFlowerController.updateIsDeletedTypeFlower),
 );
 //update is deleted
 router.patch(
-  'typeFlower-delete-multiple',
+  '/typeFlower-delete-multiple/:typeFlowerId',
   wrapRequestHandler(verifyToken),
   wrapRequestHandler(checkPermission),
   wrapRequestHandler(typeFlowerController.updateIsDeletedTypeFlower),
 );
-
+//delete type flower
+router.delete(
+  '/type-flower/:typeFlowerId',
+  wrapRequestHandler(verifyToken),
+  wrapRequestHandler(checkPermission),
+  wrapRequestHandler(typeFlowerController.delTypeFlowerById),
+);
 export default router;

@@ -52,7 +52,6 @@ export const registerController = async (req, res) => {
 //LOGIN
 export const loginController = async (req, res) => {
   const body = req.body;
-
   //Check
   const user = await checkEmailExist(body.email);
   if (!user)
@@ -131,6 +130,5 @@ export const resetPasswordController = async (req, res) => {
   return res.status(HTTP_STATUS.BAD_REQUEST).json({
     message: 'Update password success!',
     success: true,
-    
   });
 };
