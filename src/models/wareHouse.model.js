@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import mongoosePaginate, { paginate } from 'mongoose-paginate-v2';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const warehouseSchema = new mongoose.Schema(
   {

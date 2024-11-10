@@ -1,5 +1,5 @@
-import mongoose, { mongo } from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
+import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const infoSchema = new mongoose.Schema({
   name: {
@@ -20,14 +20,14 @@ const orderSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: 'user',
       required: true,
     },
     Products: [
       {
         productId: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "product",
+          ref: 'product',
           required: true,
         },
         quantity: {
@@ -39,13 +39,13 @@ const orderSchema = new mongoose.Schema(
     ],
     note: {
       type: String,
-      default: "",
+      default: '',
     },
     paymentMethod: {
       type: String,
       required: true,
-      enum: ["cod", "payment"],
-      default: "cod",
+      enum: ['cod', 'payment'],
+      default: 'cod',
     }, // cod, payment
     total: {
       type: Number,
@@ -56,8 +56,8 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
-      enum: ["pending", "confirmed", "delivery", "completed", "cancelled"],
-      default: "pending",
+      enum: ['pending', 'confirmed', 'delivery', 'completed', 'cancelled'],
+      default: 'pending',
     },
   },
   {
@@ -68,6 +68,6 @@ const orderSchema = new mongoose.Schema(
 
 orderSchema.plugin(mongoosePaginate);
 
-const Order = mongoose.model("Order", orderSchema);
+const Order = mongoose.model('Order', orderSchema, 'Order');
 
 export default Order;

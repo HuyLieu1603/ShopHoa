@@ -1,4 +1,4 @@
-import warehouse from '../models/wareHouse.model';
+import warehouse from '../models/wareHouse.model.js';
 
 export const warehouseService = {
   //add warehouse

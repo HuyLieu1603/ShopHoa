@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
+import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
-const branchSchema = mongoose.Schema(
+const branchSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -13,7 +13,7 @@ const branchSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum:['active','inactive'],
+      enum: ['active', 'inactive'],
       default: 'active',
     },
   },
@@ -22,8 +22,8 @@ const branchSchema = mongoose.Schema(
     versionKey: false,
   },
 );
-
 branchSchema.plugin(mongoosePaginate);
-const Branch = mongoose.model('Branch',branchSchema);
+
+const Branch = mongoose.model('Branch', branchSchema, 'Branch');
 
 export default Branch;

@@ -1,4 +1,3 @@
-import { HTTP_STATUS } from '../common/http-status.common.js';
 import express, { Router } from 'express';
 import { verifyToken } from '../middlewares/verify-token.middleware.js';
 import { wrapRequestHandler } from '../utils/handler.ulti.js';
@@ -53,3 +52,5 @@ router.delete(
   wrapRequestHandler(checkPermission),
   wrapRequestHandler(warehouseController.deleteWarehouse),
 );
+
+export default router;
