@@ -59,11 +59,11 @@ JSX: JSX là cú pháp cho phép bạn viết HTML trong JavaScript.
 Hooks: Hooks cung cấp các tính năng như state, lifecycle, và side effects trong các function component.
 
 Event Handling: React xử lý sự kiện một cách tối ưu và không cần phải tái tải trang.
-### Các bước: ⬇️
+### ⬇️ Các bước
 
 Khởi tạo --> Render lần đầu --> Cập nhật --> Reconciliation --> Component Lifecycle --> Event Handling
 
-### Chi tiết ⬇️
+### ⬇️ Chi tiết 
 
 1️⃣  Khởi tạo: ReactDOM.render() sẽ render component gốc.
 
