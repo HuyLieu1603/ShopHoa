@@ -1,6 +1,7 @@
 import { HTTP_STATUS } from '../common/http-status.common.js';
 import Order from '../models/order.model.js';
 import { orderService } from '../services/order.service.js';
+import { productService } from '../services/product.service.js';
 
 export const orderController = {
   //Create a new order
@@ -80,6 +81,31 @@ export const orderController = {
       message: 'Update order successfully!',
       success: true,
       data: result,
+    });
+  },
+  //order list product from cart
+
+  //order product by id
+  orderById: async (req, res) => {
+    const { userId } = req.params;
+    const { productId } = req.params;
+    const data = req.body;
+    const products = await productService.getProductById(productId);
+    if (!products)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Sản phẩm không tồn tại',
+        success: false,
+      });
+    const order = await orderService.createNewOrder(userId, products, data);
+    if (!order)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Đặt hàng thất bại!',
+        success: false,
+      });
+    return res.status(HTTP_STATUS.OK).json({
+      message: 'Đặt hàng thành công!',
+      success: true,
+      data: order,
     });
   },
 };
