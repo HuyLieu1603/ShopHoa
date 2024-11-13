@@ -1,6 +1,10 @@
 import cart from '../models/Cart.model.js';
 
 export const cartService = {
+  //check exist cart
+  checkExist: async (userId) => {
+    return await cart.findOne(userId);
+  },
   //add product to cart
   addProductToCart: async (userId, productId) => {
     return await cart.findOneAndUpdate(
@@ -8,6 +12,11 @@ export const cartService = {
       { $push: { products: { productId: productId, quantity: 1 } } },
       { new: true },
     );
+  },
+
+  //get product from cart
+  fetchProductsFromCart: async (userId) => {
+    return await cart.findOne(userId);
   },
 
   //update quantity cart
@@ -35,4 +44,11 @@ export const cartService = {
   //delete many product from cart
 
   //delete all product from cart
+  deleteAllProductFromCart: async (cartId) => {
+    return await cart.findByIdAndUpdate(
+      { _id: cartId },
+      { $set: { products: [] } },
+      { new: true },
+    );
+  },
 };

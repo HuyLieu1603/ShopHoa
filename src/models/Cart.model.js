@@ -23,7 +23,6 @@ const cartSchema = new mongoose.Schema(
         },
         is_selected: {
           type: Boolean,
-          enum: [true, false],
           default: false,
         },
       },
