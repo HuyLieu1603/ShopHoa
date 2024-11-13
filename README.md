@@ -2,7 +2,7 @@
 
 
 
-# Mô hình hoạt động của Express
+# Mô hình hoạt động của Express 🖥️
 
 <div id="header" align="center">
   <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/>
@@ -41,7 +41,8 @@ Mô hình hoạt động của Express (Express.js) trong Node.js có thể hi�
 
 Mô hình này cho phép Express xử lý các yêu cầu HTTP một cách linh hoạt và có thể mở rộng.
 
-# Mô hình hoạt động của reactJS
+# Mô hình hoạt động của reactJS 🖥️
+
 ## Giới thiệu
 ReactJS là một thư viện JavaScript mạnh mẽ, được phát triển bởi Facebook, giúp xây dựng giao diện người dùng (UI) cho các ứng dụng web một cách hiệu quả và dễ dàng. Mô hình hoạt động của React có thể được chia thành một số khái niệm cốt lõi như: Component-based architecture, Virtual DOM, One-way Data Binding, và Reconciliation. Dưới đây là mô tả chi tiết về các mô hình hoạt động này:
 ## Mô hình hoạt động
