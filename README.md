@@ -46,35 +46,7 @@ Mô hình này cho phép Express xử lý các yêu cầu HTTP một cách linh 
 ReactJS là một thư viện JavaScript mạnh mẽ, được phát triển bởi Facebook, giúp xây dựng giao diện người dùng (UI) cho các ứng dụng web một cách hiệu quả và dễ dàng. Mô hình hoạt động của React có thể được chia thành một số khái niệm cốt lõi như: Component-based architecture, Virtual DOM, One-way Data Binding, và Reconciliation. Dưới đây là mô tả chi tiết về các mô hình hoạt động này:
 
 ## Cấu trúc thư mục
-my-react-app/
-├── public/
-│   ├── index.html          # File HTML chính, nơi React sẽ được render vào
-│   ├── favicon.ico         # Biểu tượng trang web
-│   └── ...                 # Các file tĩnh khác như ảnh, fonts, ...
-├── src/
-│   ├── assets/             # Thư mục chứa các tài nguyên như hình ảnh, fonts, icon
-│   ├── components/         # Các component UI tái sử dụng được trong ứng dụng
-│   │   ├── Header.js       # Header component
-│   │   ├── ProductCard.js  # Một component sản phẩm
-│   │   └── ...             # Các component khác
-│   ├── pages/              # Các trang của ứng dụng
-│   │   ├── Home.js         # Trang chủ
-│   │   ├── ProductDetails.js # Chi tiết sản phẩm
-│   │   └── ...             # Các trang khác
-│   ├── services/           # Các dịch vụ hoặc logic xử lý API
-│   │   ├── api.js          # Các hàm liên quan đến API
-│   │   └── ...             # Các dịch vụ khác
-│   ├── utils/              # Các hàm tiện ích (helpers)
-│   │   ├── formatDate.js   # Ví dụ: hàm định dạng ngày
-│   │   └── ...             # Các tiện ích khác
-│   ├── App.js              # Component chính của ứng dụng
-│   ├── index.js            # Entry point của ứng dụng React
-│   └── ...                 # Các file khác như các hook, context, reducers...
-├── .gitignore              # Các file và thư mục cần bỏ qua khi sử dụng Git
-├── package.json            # Thông tin về dự án và các dependencies
-├── package-lock.json       # Lock file của các dependencies (tự động tạo)
-└── README.md               # Mô tả dự án, cách cài đặt và sử dụng
-
+![image](https://github.com/user-attachments/assets/ffc74bfa-9f7b-449f-ac07-c8ebc4f2e30f)
 
 <h3 align="left">🔥Languages and Tools:</h3>
 <div align="center">
