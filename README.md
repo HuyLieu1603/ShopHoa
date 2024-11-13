@@ -44,7 +44,14 @@ Mô hình này cho phép Express xử lý các yêu cầu HTTP một cách linh 
 # Mô hình hoạt động của reactJS
 ## Giới thiệu
 ReactJS là một thư viện JavaScript mạnh mẽ, được phát triển bởi Facebook, giúp xây dựng giao diện người dùng (UI) cho các ứng dụng web một cách hiệu quả và dễ dàng. Mô hình hoạt động của React có thể được chia thành một số khái niệm cốt lõi như: Component-based architecture, Virtual DOM, One-way Data Binding, và Reconciliation. Dưới đây là mô tả chi tiết về các mô hình hoạt động này:
-
+## Mô hình hoạt động
+Component-based: React xây dựng UI dựa trên các component độc lập.
+Virtual DOM: React sử dụng Virtual DOM để tối ưu hiệu suất khi cập nhật giao diện.
+One-way Data Binding: Dữ liệu chỉ di chuyển theo một chiều từ component cha xuống component con.
+Reconciliation: React sử dụng thuật toán hòa giải để tối ưu hóa việc cập nhật DOM.
+JSX: JSX là cú pháp cho phép bạn viết HTML trong JavaScript.
+Hooks: Hooks cung cấp các tính năng như state, lifecycle, và side effects trong các function component.
+Event Handling: React xử lý sự kiện một cách tối ưu và không cần phải tái tải trang.
 ## Cấu trúc thư mục
 ![image](https://github.com/user-attachments/assets/ffc74bfa-9f7b-449f-ac07-c8ebc4f2e30f)
 
