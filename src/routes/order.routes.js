@@ -10,8 +10,15 @@ const router = express.Router();
 //Create a order
 router.post(
   '/order',
+  wrapRequestHandler(verifyToken),
   wrapRequestHandler(orderMiddleware),
-  wrapRequestHandler(orderController.createOrder),
+  wrapRequestHandler(orderController.orderByList),
+);
+router.post(
+  '/order/:productId',
+  wrapRequestHandler(verifyToken),
+  wrapRequestHandler(orderMiddleware),
+  wrapRequestHandler(orderController.orderById),
 );
 //Get a order by id
 router.get(

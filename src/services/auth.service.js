@@ -16,7 +16,9 @@ export const createUser = async (data) => {
     return null;
   }
 };
-
+export const getUser = async (userID) => {
+  return await User.findById(userID);
+};
 // Update Password
 export const updatePassword = async (userID, password) => {
   const user = await User.findByIdAndUpdate(

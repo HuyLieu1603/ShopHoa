@@ -1,3 +1,4 @@
+import { required } from 'joi';
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
@@ -34,6 +35,10 @@ const orderSchema = new mongoose.Schema(
           type: Number,
           required: true,
           default: 1,
+        },
+        total: {
+          type: Number,
+          required: true,
         },
       },
     ],
