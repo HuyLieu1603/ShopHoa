@@ -5,6 +5,7 @@ import typeFlowerRoutes from './typeFlower.routes.js';
 import productRoutes from './product.routes.js';
 import wareHouseRoutes from './warehouse.routes.js';
 import branchRoutes from './branch.routes.js';
+import cartRoutes from './cart.routes.js';
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ const rootRoutes = [
   typeFlowerRoutes,
   wareHouseRoutes,
   branchRoutes,
+  cartRoutes,
 ];
 rootRoutes.map((route) => {
   router.use(route);

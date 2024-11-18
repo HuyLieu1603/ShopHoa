@@ -1,4 +1,3 @@
-import { boolean } from 'joi';
 import mongoose, { version } from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
