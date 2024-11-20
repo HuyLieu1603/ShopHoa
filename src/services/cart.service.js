@@ -2,19 +2,18 @@ import { query } from 'express';
 import cart from '../models/Cart.model.js';
 
 export const cartService = {
+  //check exist cart
+  checkCart: async (userId) => {
+    return await cart.findById(userId);
+  },
+  //create a new cart
+  createCart: async (userId) => {
+    const newCart = new cart({ id_user: userId, Products: [] });
+    return await newCart.save();
+  },
   // get carts by userId
-  getCartsByUserId: async (query, params) => {
-    if (params) {
-      return cart.findOne({ userId: query.userId }).populate([
-        {
-          path: 'userId',
-          select: '_id email avatar fullname phone',
-          match: { status: query.status, _id: query.userId },
-        },
-        {
-          path: 'carts.productId', select : '_id nameProduct price'
-        }
-      ]);
-    }
+  getCartsByUserId: async (userId) => {
+    if(!checkCart(userId))
+      createCart(userId)
   },
 };
