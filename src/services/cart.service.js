@@ -13,7 +13,23 @@ export const cartService = {
   },
   // get carts by userId
   getCartsByUserId: async (userId) => {
-    if(!checkCart(userId))
-      createCart(userId)
+    if (!checkCart(userId)) createCart(userId);
+    return await cart.findOne({ id_user: userId });
   },
+  // Lấy các sản phẩm được chọn trong giỏ hàng
+  getListProductIsSelected: async (userId) => {
+    //Lấy giỏ hàng của người dùng
+    const userCart = await getCartsByUserId(userId);
+    //Lấy danh sách sản phẩm
+    const listProduct = userCart.filter((item) => item.is_selected);
+    return listProduct;
+  },
+  //Xóa các sản phẩm được chọn trong giỏ hàng
+  deleteListProduct: async (userId) => {
+    // Lấy danh sách sản phẩm
+    const listProduct = getListProductIsSelected(userId);
+    // Xóa các sản phẩm thuộc danh sách đó
+    return await cart.deleteMany(listProduct);
+  },
+  //
 };

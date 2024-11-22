@@ -1,4 +1,4 @@
-import { required } from 'joi';
+import { boolean, required } from 'joi';
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
@@ -61,8 +61,15 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
-      enum: ['pending', 'confirmed', 'delivery', 'completed', 'cancelled'],
-      default: 'pending',
+      enum: [
+        'Chờ xác nhận',
+        'Đã xác nhận',
+        'Đã thanh toán',
+        'Đã hoàn thành',
+        'Đã hủy',
+        'Đã xóa',
+      ],
+      default: 'Chờ xác nhận',
     },
   },
   {
