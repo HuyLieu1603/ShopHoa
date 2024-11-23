@@ -6,7 +6,7 @@ export const cartController = {
   // Get cart by user id
   getCartByUserid: async (req, res) => {
     const { userId } = req.user;
-    const result = await cartService.getCartByUserid(userId);
+    const result = await cartService.getCartsByUserId(userId);
     if (!result)
       return res.status(HTTP_STATUS.BAD_REQUEST).json({
         message: 'Tải giỏ hàng thất bại',

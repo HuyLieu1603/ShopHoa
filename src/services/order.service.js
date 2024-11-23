@@ -1,6 +1,7 @@
 import Order from '../models/order.model.js';
 import { cartService } from './cart.service.js';
 import cart from '../models/Cart.model.js';
+import Warehouse from '../models/wareHouse.model.js';
 
 export const orderService = {
   // create a order by product
@@ -12,10 +13,18 @@ export const orderService = {
     });
     return await newOrder.save();
   },
+  createOrderByListProduct: async (userId, listProduct, inforOrderShipping) => {
+    const orderByList = new Order({
+      userId: userId,
+      Products: listProduct,
+      inforOrderShipping: inforOrderShipping,
+    });
+    return await orderByList.save();
+  },
   // Kiểm tra số lượng sản phẩm
-  checkQuantity: async (listProduct, quantityBuy) => {
+  checkQuantity: async (listProduct, quantityWarehouse) => {
     for (const product of listProduct) {
-      if (product.Flowers.quantity < quantityBuy) return false;
+      if (product.Flowers.quantity > quantityWarehouse) return false;
     }
     return true;
   },
