@@ -98,4 +98,25 @@ export const warehouseController = {
       success: true,
     });
   },
+  // add type flower into warehouse
+  addTypeFlower: async (req, res) => {
+    const { warehouseId } = req.params;
+    const { id_typeFlower, quantity } = req.body;
+    // add
+    const addFlower = await warehouseService(
+      warehouseId,
+      id_typeFlower,
+      quantity,
+    );
+    if (!addFlower)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Thêm loại hoa vào kho thất bại!',
+        success: false,
+      });
+    return res.status(HTTP_STATUS.OK).json({
+      message: 'Thêm loại hoa vào kho thành công!',
+      success: true,
+      data: addFlower,
+    });
+  },
 };

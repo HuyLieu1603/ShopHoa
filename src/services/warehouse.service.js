@@ -5,6 +5,26 @@ export const warehouseService = {
   addWarehouse: async (data) => {
     return await warehouse.create(data);
   },
+  // get quantity flowers from warehouse
+  getQuantityFlower: async (warehouseId, id_typeFlower) => {
+    return await warehouse.findOne(
+      {
+        _id: warehouseId,
+        'Flowers.id_typeFlower': id_typeFlower,
+      },
+      {
+        'Flowers.$': 1,
+      },
+    );
+  },
+  // add type flower into warehouse
+  addTypeFlower: async (warehouseId, id_typeFlower, quantity) => {
+    return await warehouse.findOneAndUpdate(
+      { _id: warehouseId, 'Flowers.id_typeFlower': { $ne: id_typeFlower } },
+      { $push: { Flowers: [id_typeFlower, quantity] } },
+      { new: true },
+    );
+  },
   //get warehouse by id
   getWarehouseById: async (warehouseId) => {
     return await warehouse.findById(warehouseId);
