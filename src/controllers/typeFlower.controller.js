@@ -1,7 +1,6 @@
 import { HTTP_STATUS } from '../common/http-status.common.js';
 import { typeFlowerService } from '../services/typeFlower.service.js';
 
-
 export const typeFlowerController = {
   //add type flower
   addTypeFlower: async (req, res) => {
@@ -87,44 +86,38 @@ export const typeFlowerController = {
   //update status and is deleted
   updateIsDeletedTypeFlower: async (req, res) => {
     const { typeFlowerId } = req.params;
-    const { is_deleted, status } = req.query;
-    if (!is_deleted || !status) {
+    console.log(typeFlowerId);
+    const typeFlower = await typeFlowerService.getTypeFlowerById(typeFlowerId);
+    if (!typeFlower)
       return res.status(HTTP_STATUS.BAD_REQUEST).json({
-        message: 'Update is_deleted and status failed',
+        message: 'Không tìm thấy loại hoa!',
         success: false,
       });
-    }
-    const deleted = is_deleted === 'true' ? true : false;
-    const statusTypeFlower = status === 'active' ? 'active' : 'inactive';
-    if (deleted) {
-      const result = await typeFlowerService.updateIsDeleted(
-        typeFlowerId,
-        is_deleted,
-      );
-      if (!result)
-        return res.status(HTTP_STATUS.BAD_REQUEST).json({
-          message: 'Update failed!',
-          success: false,
-        });
-      return res.status(HTTP_STATUS.OK).json({
-        message: deleted ? 'Restore successfully!' : 'Update successfully!',
-        success: true,
+    const checkDelete = typeFlower.is_deleted;
+    typeFlower.is_deleted = !typeFlower.is_deleted;
+    await typeFlower.save();
+    const action = checkDelete
+      ? 'Khôi phục sản phẩm thành công'
+      : 'Xóa sản phẩm thành công';
+    return res.status(HTTP_STATUS.OK).json({
+      message: action,
+      success: true,
+    });
+  },
+  updateStatusTypeFlower: async (req, res) => {
+    const { typeFlowerId } = req.params;
+    const typeFlower = await typeFlowerService.getTypeFlowerById(typeFlowerId);
+    if (!typeFlower)
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({
+        message: 'Không tìm thấy loại hoa',
+        success: false,
       });
-    }
-    if (statusTypeFlower) {
-      const updateStatus = await typeFlowerService.updateStatus(
-        typeFlowerId,
-        status,
-      );
-      if (!updateStatus)
-        return res.status(HTTP_STATUS.BAD_REQUEST).json({
-          message: 'Update status failed',
-          success: false,
-        });
-      return res.status(HTTP_STATUS.OK).json({
-        message: 'Update status successfully!',
-        success: true,
-      });
-    }
+    typeFlower.status === 'active' ? 'inactive' : 'active';
+    await typeFlower.save();
+    return res.status(HTTP_STATUS.OK).json({
+      message: 'Thay đổi trạng thái thành công!',
+      success: true,
+      data: typeFlower.status,
+    });
   },
 };

@@ -13,7 +13,7 @@ export const cartService = {
   },
   // get carts by userId
   getCartsByUserId: async (userId) => {
-    if (!checkCart(userId)) createCart(userId);
+    if (!cartService.checkCart(userId)) createCart(userId);
     return await cart.findOne({ id_user: userId });
   },
   // Lấy các sản phẩm được chọn trong giỏ hàng

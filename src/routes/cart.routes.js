@@ -11,25 +11,11 @@ const router = express.Router();
 router.get(
   '/cart',
   wrapRequestHandler(verifyToken),
-  wrapRequestHandler(cartController.fetchListProductFromCart),
+  wrapRequestHandler(cartController.getCartByUserid),
 );
-//create cart
-router.post(
-  '/cart',
-  wrapRequestHandler(verifyToken),
-  wrapRequestHandler(cartMiddleware),
-  wrapRequestHandler(cartController.createNewCart),
-);
-//Add product to cart
-router.post(
-  '/cart/:productId',
-  wrapRequestHandler(verifyToken),
-  // wrapRequestHandler(cartMiddleware),
-  wrapRequestHandler(cartController.addProductToCartById),
-);
+
 //Update quantity product in cart
 
 // Increase quantity product in cart
-router.put('/');
 
 export default router;

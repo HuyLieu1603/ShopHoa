@@ -40,11 +40,18 @@ router.patch(
   wrapRequestHandler(typeFlowerController.updateIsDeletedTypeFlower),
 );
 //update is deleted
-router.patch(
+router.put(
   '/typeFlower-delete-multiple/:typeFlowerId',
   wrapRequestHandler(verifyToken),
   wrapRequestHandler(checkPermission),
   wrapRequestHandler(typeFlowerController.updateIsDeletedTypeFlower),
+);
+//update status
+router.put(
+  '/typeFlower-status/:typeFlowerId',
+  wrapRequestHandler(verifyToken),
+  wrapRequestHandler(checkPermission),
+  wrapRequestHandler(typeFlowerController.updateStatusTypeFlower),
 );
 //delete type flower
 router.delete(
