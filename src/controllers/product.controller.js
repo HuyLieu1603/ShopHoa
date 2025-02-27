@@ -4,59 +4,59 @@ import { productService } from '../services/product.service.js';
 import Product from '../models/product.model.js';
 
 export const productController = {
-  // optionProduct: (params) => {
-  //   const { _limit = 10, _page = 1, q, populate, rest } = params;
+  optionProduct: (params) => {
+    const { _limit = 10, _page = 1, q, populate, rest } = params;
 
-  //   let populateDefault = [
-  //     {
-  //       path: 'category',
-  //       select: '_id nameCategory image desc',
-  //     },
-  //     {
-  //       path: 'brand',
-  //       select: '_id nameBrand image desc',
-  //     },
-  //   ];
-  //   if (populate) {
-  //     if (Array.isArray(populate)) {
-  //       populateDefault = [...populateDefault, ...populate];
-  //     } else {
-  //       populateDefault.push(populate);
-  //     }
-  //   }
-  //   let query = {};
-  //   if (q) {
-  //     query = {
-  //       $and: [
-  //         {
-  //           $or: [{ nameProduct: { $regex: new RegExp(q), $options: 'i' } }],
-  //         },
-  //       ],
-  //     };
-  //   }
-  //   // filter status
-  //   if (rest.status) {
-  //     query = {
-  //       ...query,
-  //       status: rest.status,
-  //     };
-  //   }
-  //   // filter deleted
-  //   if (rest.deleted) {
-  //     query = {
-  //       ...query,
-  //       is_deleted: rest.deleted === 'true' ? true : false,
-  //     };
-  //   }
+    let populateDefault = [
+      {
+        path: 'category',
+        select: '_id nameCategory image desc',
+      },
+      {
+        path: 'brand',
+        select: '_id nameBrand image desc',
+      },
+    ];
+    if (populate) {
+      if (Array.isArray(populate)) {
+        populateDefault = [...populateDefault, ...populate];
+      } else {
+        populateDefault.push(populate);
+      }
+    }
+    let query = {};
+    if (q) {
+      query = {
+        $and: [
+          {
+            $or: [{ nameProduct: { $regex: new RegExp(q), $options: 'i' } }],
+          },
+        ],
+      };
+    }
+    // filter status
+    if (rest.status) {
+      query = {
+        ...query,
+        status: rest.status,
+      };
+    }
+    // filter deleted
+    if (rest.deleted) {
+      query = {
+        ...query,
+        is_deleted: rest.deleted === 'true' ? true : false,
+      };
+    }
 
-  //   const option = {
-  //     limit: parseInt(_limit),
-  //     page: parseInt(_page),
-  //     populate: populateDefault,
-  //     sort: { createdAt: -1 },
-  //   };
-  //   return { option, query };
-  // },
+    const option = {
+      limit: parseInt(_limit),
+      page: parseInt(_page),
+      populate: populateDefault,
+      sort: { createdAt: -1 },
+    };
+    return { option, query };
+  },
 
   //Check id product invalid
   checkIdProductInvalid: async (req, res) => {
